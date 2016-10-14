@@ -34,3 +34,4 @@ module retCounter(retDone,en,clk,reset);
 	
 	//Moore output assignment of retDone.
 	assign retDone = (S==13'd6000);
+endmodule
