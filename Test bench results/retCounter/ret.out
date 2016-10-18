@@ -1,0 +1,93 @@
+#! c:/iverilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20130827)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_011189F8 .scope module, "tb_retcounter" "tb_retcounter" 2 12;
+ .timescale -9 -9;
+v011131D0_0 .var "clk", 0 0;
+v0111EE10_0 .var "en", 0 0;
+v0111EE68_0 .var "reset", 0 0;
+v0111EEC0_0 .net "retDone", 0 0, L_0111EF18;  1 drivers
+S_011149A0 .scope module, "mut" "retCounter" 2 19, 3 14 0, S_011189F8;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "retDone"
+    .port_info 1 /INPUT 1 "en"
+    .port_info 2 /INPUT 1 "clk"
+    .port_info 3 /INPUT 1 "reset"
+v01114A70_0 .var "S", 12 0;
+L_01010C08 .functor BUFT 1, C4<1011101110000>, C4<0>, C4<0>, C4<0>;
+v01114AC8_0 .net/2u *"_s0", 12 0, L_01010C08;  1 drivers
+v01113070_0 .net "clk", 0 0, v011131D0_0;  1 drivers
+v011130C8_0 .net "en", 0 0, v0111EE10_0;  1 drivers
+v01113120_0 .net "reset", 0 0, v0111EE68_0;  1 drivers
+v01113178_0 .net "retDone", 0 0, L_0111EF18;  alias, 1 drivers
+E_011185E0 .event posedge, v01113070_0;
+L_0111EF18 .cmp/eq 13, v01114A70_0, L_01010C08;
+    .scope S_011149A0;
+T_0 ;
+    %wait E_011185E0;
+    %load/v 8, v01113120_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 13, 0;
+    %assign/v0 v01114A70_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v011130C8_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %load/v 8, v01114A70_0, 13;
+    %cmpi/u 8, 6001, 13;
+    %mov 8, 5, 1;
+    %jmp/0  T_0.4, 8;
+    %ix/load 0, 1, 0;
+    %load/vp0 9, v01114A70_0, 13;
+    %jmp/1  T_0.6, 8;
+T_0.4 ; End of true expr.
+    %jmp/0  T_0.5, 8;
+ ; End of false expr.
+    %blend  9, 0, 13; Condition unknown.
+    %jmp  T_0.6;
+T_0.5 ;
+    %mov 9, 0, 13; Return false value
+T_0.6 ;
+    %ix/load 0, 13, 0;
+    %assign/v0 v01114A70_0, 0, 9;
+    %jmp T_0.3;
+T_0.2 ;
+    %ix/load 0, 13, 0;
+    %assign/v0 v01114A70_0, 0, 0;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_011189F8;
+T_1 ;
+    %delay 5, 0;
+    %load/v 8, v011131D0_0, 1;
+    %inv 8, 1;
+    %set/v v011131D0_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_011189F8;
+T_2 ;
+    %vpi_call 2 27 "$dumpfile", "ret.vcd" {0 0};
+    %vpi_call 2 28 "$dumpvars", 1'sb0, S_011189F8 {0 0};
+    %movi 8, 5, 3;
+    %set/v v0111EE68_0, 8, 1;
+    %set/v v011131D0_0, 9, 1;
+    %set/v v0111EE10_0, 10, 1;
+    %delay 10, 0;
+    %set/v v0111EE68_0, 0, 1;
+    %delay 70000, 0;
+    %vpi_call 2 32 "$finish" {0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_retcounter.v";
+    "retCounter.v";
