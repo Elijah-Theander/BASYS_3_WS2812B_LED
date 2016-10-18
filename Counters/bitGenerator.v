@@ -23,6 +23,10 @@ module bitGenerator(theBit,genDone,genMode,doGen,retDone,clk,reset);
 	input clk,reset;	 //synchronous clock and reset.
 	
 	reg [6:0] S;		 //State memory variable.
+	reg theBit;
+	
+	//parameters for genMode.
+	parameter   genZero = 2'b10, genOne = 2'b11, genRet = 2'b00, genNone = 2'b01;
 	
 	//State Memory.
 	always @(posedge clk)begin
@@ -30,10 +34,25 @@ module bitGenerator(theBit,genDone,genMode,doGen,retDone,clk,reset);
 			S <= 7'd0;
 		end
 		else if(doGen)begin
-			S <= (S < 121)? S+1:7'd0;
+			S <= (S < 7'd121)? S+1:7'd0;
 		end
 		else begin
 			S <= 7'd0;
 		end
 	end
 	
+	//theBit assignment
+	always @(genMode,retDone)begin
+		case(genMode)
+			genZero: theBit = (S > 7'd70); // generate low for 70, then high 50, half mark is low
+			genOne:  theBit = (S < 7'd71); // generate high for 70 then, low 50, half mark is high
+			genRet:	 theBit = 1'b0;        // not concerned with ret timing here, will come from controller. 
+			genNone: theBit = 1'b0;
+			default: theBit = 1'b0;
+		endcase
+	end
+	
+	//genDone assignment
+	assign genDone = (S == 7'd120);
+	
+endmodule
