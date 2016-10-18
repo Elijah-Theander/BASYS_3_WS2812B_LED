@@ -19,7 +19,6 @@ module bitGenerator(theBit,genDone,genMode,doGen,retDone,clk,reset);
 	output genDone;		 //output signal saying the generation of one bit is finished.
 	input [1:0] genMode; //input from controller saying what to generate currently.
 	input doGen;		 //input from controller saying when to generate bit.
-	input retDone;	 	 //input from retCounter saying RET has been reached
 	input clk,reset;	 //synchronous clock and reset.
 	
 	reg [6:0] S;		 //State memory variable.
@@ -42,7 +41,7 @@ module bitGenerator(theBit,genDone,genMode,doGen,retDone,clk,reset);
 	end
 	
 	//theBit assignment
-	always @(genMode,retDone)begin
+	always @(genMode)begin
 		case(genMode)
 			genZero: theBit = (S > 7'd70); // generate low for 70, then high 50, half mark is low
 			genOne:  theBit = (S < 7'd71); // generate high for 70 then, low 50, half mark is high
