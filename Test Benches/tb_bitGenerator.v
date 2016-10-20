@@ -15,7 +15,7 @@ module tb_bitGenerator;
 	reg doGen;
 	reg clk,reset;
 	
-	bitGenerator mut(theBit,genDone,genMode,doGen,retDone,clk,reset);
+	bitGenerator mut(theBit,genDone,genMode,doGen,clk,reset);
 	
 	//100 MHz clk
 	always begin 
