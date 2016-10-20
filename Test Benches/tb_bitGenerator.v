@@ -25,7 +25,7 @@ module tb_bitGenerator;
 	//begin testing stimulus.
 	initial begin
 		$dumpfile("bitGen.vcd");
-		$dumpfile(0,tb_bitGenerator);
+		$dumpvars(0,tb_bitGenerator);
 			{doGen,clk,reset} = 3'b001; genMode = 2'b00; #10
 			reset = 0; doGen = 1;                        #260 // RET, should be zero, but not for full RET time.
 			genMode = 2'b10;							 #260 // should see a low NZR pulse
