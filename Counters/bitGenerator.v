@@ -13,7 +13,7 @@ For a Gen 1 signal it will be High for 700 nS, low 500
 For a Gen 2 signal it will be Low for 700 nS, high 500.
 */
 
-module bitGenerator(theBit,genDone,genMode,doGen,retDone,clk,reset);
+module bitGenerator(theBit,genDone,genMode,doGen,clk,reset);
 	
 	output theBit;		 //output bit going to the LED strip.
 	output genDone;		 //output signal saying the generation of one bit is finished.
