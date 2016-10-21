@@ -10,7 +10,7 @@ I am using a Value of 1200 nS, so right in the middle.
 Using 100 MHz clk from BASYS 3, 120 counts from it is needed
 for 1200 nS.
 For a Gen 1 signal it will be High for 700 nS, low 500
-For a Gen 2 signal it will be Low for 700 nS, high 500.
+For a Gen 0 signal it will be Low for 700 nS, high 500.
 */
 
 module bitGenerator(theBit,genDone,genMode,doGen,clk,reset);
@@ -41,10 +41,10 @@ module bitGenerator(theBit,genDone,genMode,doGen,clk,reset);
 	end
 	
 	//theBit assignment
-	always @(genMode)begin
+	always @(genMode,S)begin
 		case(genMode)
-			genZero: theBit = (S > 7'd70); // generate low for 70, then high 50, half mark is low
-			genOne:  theBit = (S < 7'd71); // generate high for 70 then, low 50, half mark is high
+			genZero: theBit = (S < 7'd51)? 1:0; // generate high for 50, then low 70, half mark is low
+			genOne:  theBit = (S < 7'd71)? 1:0; // generate high for 70 then, low 50, half mark is high
 			genRet:	 theBit = 1'b0;        // not concerned with ret timing here, will come from controller. 
 			genNone: theBit = 1'b0;
 			default: theBit = 1'b0;
