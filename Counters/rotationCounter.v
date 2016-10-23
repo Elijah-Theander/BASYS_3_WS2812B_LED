@@ -12,8 +12,9 @@ module rotationCounter(sendDone,genDone,clk,reset);
 	input genDone;		//input saying  increment count.
 	input clk,reset;	//synchronous clock and reset.
 	
-	reg [6:0] S,nS;
+	reg [6:0] S,nS;		//State memory variable.
 	
+	//State Memory.
 	always @(posedge clk)begin
 		if(reset)begin
 			S <= 7'd0;
@@ -23,6 +24,7 @@ module rotationCounter(sendDone,genDone,clk,reset);
 		end
 	end
 	
+	//Next State
 	always @(S,genDone)begin
 		if(S < 7'd97)begin
 			nS = genDone? S+1:S;
