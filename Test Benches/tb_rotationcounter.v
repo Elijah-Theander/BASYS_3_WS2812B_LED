@@ -16,7 +16,7 @@ module tb_rotationcounter;
 	
 	//100MHz clk
 	always begin
-		#5 clk = !clk
+		#5 clk = !clk;
 	end
 	
 	

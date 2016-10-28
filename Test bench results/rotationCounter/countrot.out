@@ -1,0 +1,105 @@
+#! c:/iverilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20130827)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_008B93A0 .scope module, "tb_rotationcounter" "tb_rotationcounter" 2 8;
+ .timescale 0 0;
+v01070DA0_0 .var "clk", 0 0;
+v01071168_0 .var "genDone", 0 0;
+v01070E50_0 .var "reset", 0 0;
+v01071378_0 .net "sendDone", 0 0, L_01070C40;  1 drivers
+S_008B4BC8 .scope module, "mut" "rotationCounter" 2 15, 3 9 0, S_008B93A0;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "sendDone"
+    .port_info 1 /INPUT 1 "genDone"
+    .port_info 2 /INPUT 1 "clk"
+    .port_info 3 /INPUT 1 "reset"
+v008B9470_0 .var "S", 6 0;
+v008B94C8_0 .net *"_s0", 8 0, L_01070DF8;  1 drivers
+L_01071428 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v008B4C98_0 .net *"_s3", 1 0, L_01071428;  1 drivers
+L_01071450 .functor BUFT 1, C4<001100000>, C4<0>, C4<0>, C4<0>;
+v008B4CF0_0 .net/2u *"_s4", 8 0, L_01071450;  1 drivers
+v008BEEE0_0 .net "clk", 0 0, v01070DA0_0;  1 drivers
+v008BEF38_0 .net "genDone", 0 0, v01071168_0;  1 drivers
+v008BEF90_0 .var "nS", 6 0;
+v008B3098_0 .net "reset", 0 0, v01070E50_0;  1 drivers
+v008B30F0_0 .net "sendDone", 0 0, L_01070C40;  alias, 1 drivers
+E_008B8A40 .event edge, v008BEF38_0, v008B9470_0;
+E_008B85E0 .event posedge, v008BEEE0_0;
+L_01070DF8 .concat [ 7 2 0 0], v008B9470_0, L_01071428;
+L_01070C40 .cmp/eq 9, L_01070DF8, L_01071450;
+    .scope S_008B4BC8;
+T_0 ;
+    %wait E_008B85E0;
+    %load/v 8, v008B3098_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 7, 0;
+    %assign/v0 v008B9470_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v008BEF90_0, 7;
+    %ix/load 0, 7, 0;
+    %assign/v0 v008B9470_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_008B4BC8;
+T_1 ;
+    %wait E_008B8A40;
+    %load/v 8, v008B9470_0, 7;
+    %cmpi/u 8, 97, 7;
+    %jmp/0xz  T_1.0, 5;
+    %load/v 8, v008BEF38_0, 1;
+    %jmp/0  T_1.2, 8;
+    %ix/load 0, 1, 0;
+    %load/vp0 9, v008B9470_0, 7;
+    %jmp/1  T_1.4, 8;
+T_1.2 ; End of true expr.
+    %load/v 16, v008B9470_0, 7;
+    %jmp/0  T_1.3, 8;
+ ; End of false expr.
+    %blend  9, 16, 7; Condition unknown.
+    %jmp  T_1.4;
+T_1.3 ;
+    %mov 9, 16, 7; Return false value
+T_1.4 ;
+    %set/v v008BEF90_0, 9, 7;
+    %jmp T_1.1;
+T_1.0 ;
+    %set/v v008BEF90_0, 0, 7;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_008B93A0;
+T_2 ;
+    %delay 5, 0;
+    %load/v 8, v01070DA0_0, 1;
+    %inv 8, 1;
+    %set/v v01070DA0_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_008B93A0;
+T_3 ;
+    %vpi_call 2 25 "$dumpfile", "countrot.vcd" {0 0};
+    %vpi_call 2 26 "$dumpvars", 1'sb0, S_008B93A0 {0 0};
+    %movi 8, 3, 3;
+    %set/v v01071168_0, 8, 1;
+    %set/v v01070E50_0, 9, 1;
+    %set/v v01070DA0_0, 10, 1;
+    %delay 20, 0;
+    %set/v v01070E50_0, 0, 1;
+    %delay 2000, 0;
+    %vpi_call 2 29 "$finish" {0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_rotationcounter.v";
+    "rotationcounter.v";
