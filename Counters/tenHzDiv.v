@@ -31,7 +31,7 @@ module tenHzDiv(tenHz,enable,clk,reset);
 	//Next state
 	always @(S,enable)begin
 		if(enable)begin
-			ns = (S < 24'd10_000_001)? S+1:0;
+			nS = (S < 24'd10_000_001)? S+1:0;
 		end 
 		else begin
 			nS = S;
