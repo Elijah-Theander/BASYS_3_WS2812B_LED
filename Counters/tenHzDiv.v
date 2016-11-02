@@ -41,3 +41,7 @@ module tenHzDiv(tenHz,enable,clk,reset);
 	assign tenHz = (S == 24'd10_000_000);
 	
 endmodule
+
+//I will not be writing a test bench for this module
+//because I have used this module many times and
+//know it works properly.
