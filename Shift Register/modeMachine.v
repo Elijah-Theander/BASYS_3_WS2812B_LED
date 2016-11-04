@@ -9,15 +9,16 @@ sending after RET.
 */
 
 module modeMachine(go,regVal,changeMode,modeSet,send,Green,Red,Blue,rbSwap,colorCycle,clk,reset);
-	output          go;//Determines sending.
-	output [95:0]   regVal;//Passthrough into ShiftRegister loadValue
+
+	output          go;                  //Determines sending.
+	output [95:0]   regVal;              //Passthrough into ShiftRegister loadValue
 	
-	input           changeMode;// Basys 3 button switch
-	input [1:0]     modeSet;//Basys 3 sw[1:0]
-	input           send;//Basys 3 button switch
-	input [3:0]     Green,Red,Blue;//basys 3 sw [15:4]
-	input [95:0]    rbSwap,colorCycle;//inputs from seperate modules
-	input           clk,reset;//synchronous clock and reset.
+	input           changeMode;          // Basys 3 button switch
+	input [1:0]     modeSet;             //Basys 3 sw[1:0]
+	input           send;                //Basys 3 button switch
+	input [3:0]     Green,Red,Blue;      //basys 3 sw [15:4]
+	input [95:0]    rbSwap,colorCycle;   //inputs from seperate modules
+	input           clk,reset;           //synchronous clock and reset.
 	
 	//State and next state variables
 	reg  [1:0]       S;
