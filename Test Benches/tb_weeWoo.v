@@ -11,14 +11,12 @@ to verify weewoo.v
 module tb_weeWoo;
 
 	wire [95:0] rbSwap;
-	wire tenHz;
 	
-	reg         enable;
+	reg         tenHzIn;
 	reg         clk,reset;
 	
-	//Test Modules.
-	tenHzDiv give(tenHz,enable,   clk,reset);
-	weeWoo   receive(rbSwap,tenHz,clk,reset);
+	//Module under test
+	weeWoo   mut(rbSwap,tenHzIn,clk,reset);
 	
 	//100 MHz clk
 	always begin
@@ -29,8 +27,11 @@ module tb_weeWoo;
 	initial begin
 	    $dumpfile("weeWoo.vcd");
 		$dumpvars(0,tb_weeWoo);
-		    {enable,clk,reset} = 3'b101; #30
-			reset = 0;                   #400_000_000
+		    {tenHzIn,clk,reset} = 3'b101; #30
+			reset = 0;                    #30
+			tenHzIn = 0;                  #30
+			tenHzIn = 1;                  #30
+			tenHzIn = 0;                  #30
 			//This should give us several changes.
 		$finish;
 	end
