@@ -23,7 +23,7 @@ module tb_weeWoo;
 	    #5 clk = !clk;
 	end
 	
-	//Begin testing
+	//Begin testing stimulus
 	initial begin
 	    $dumpfile("weeWoo.vcd");
 		$dumpvars(0,tb_weeWoo);

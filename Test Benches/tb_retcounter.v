@@ -18,6 +18,7 @@ module tb_retcounter;
 	//Module under test
 	retCounter mut(.retDone(retDone),.en(en),.clk(clk),.reset(reset));
 	
+	//#100 MHz clk
 	always begin
 		#5 clk = !clk; //100Mhz clock.
 	end

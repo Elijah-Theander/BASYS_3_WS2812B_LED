@@ -24,12 +24,11 @@ module tb_modeMachine;
 	modeMachine mut(go,regVal,changeMode,modeSet,send,Green,Red,Blue,rbSwap,colorCycle,clk,reset);
 	
 	//100 MHz clk
-	
 	always begin
 	    #5 clk = !clk;
 	end
 	
-	//Begin testing stimulus.
+	//Begin testing stimulus
 	initial begin
 		$dumpfile("modeMachine.vcd");
 		$dumpvars(0,tb_modeMachine);

@@ -16,18 +16,19 @@ module tb_rotationcounter;
 	//Module under test
 	rotationCounter mut(sendDone,genDone,clk,reset);
 	
-	//100MHz clk
+	//100 MHz clk
 	always begin
 		#5 clk = !clk;
 	end
 	
 	
-	//begin testing stimulus
+	//Begin testing stimulus
 	initial begin
 		$dumpfile("countrot.vcd");
 		$dumpvars(0,tb_rotationcounter);
 			{clk,reset,genDone} = 3'b011; #20
-			reset = 0;                    #2000//should see all counts
+			reset = 0;                    #2000
+			//Should see all counts
 		$finish;
 	end	
 	

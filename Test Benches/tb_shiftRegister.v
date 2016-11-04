@@ -19,11 +19,12 @@ module tb_shiftRegister;
 	//Module under test
 	shiftRegister mut(registerBit,loadRegister,loadValue,genDone,clk,reset);
 	
-	//100MHz clk
+	//100 MHz clk
 	always begin
 		#5 clk = !clk;
 	end
 	
+	//Begin testing stimulus
 	initial begin
 		$dumpfile("shiftreg.vcd");
 		$dumpvars(0,tb_shiftRegister);
@@ -31,7 +32,7 @@ module tb_shiftRegister;
 			{loadRegister,genDone,clk,reset} =4'b1101;    #20
 			reset = 0;                                    #20
 			loadRegister = 0;                             #1000 
-			//this should give us all rotates.
+			//This should give us all rotates.
 		$finish;
 	end
 	
