@@ -7,16 +7,16 @@ the leading color of a register.
 */
 
 module weeWoo(rbSwap,tenHzIn,clk,reset);
-	output [95:0] rbSwap;//output of register
+	output [95:0] rbSwap;     //output of register
 	
-	input         tenHzIn;
+	input         tenHzIn;    //input from tenHzDiv saying when to swap reg
 	input         clk,reset;
 	
 	//State Variables;
 	reg           S;
 	wire          nS;
 	
-	//register parameters
+	//Register parameters
 	parameter redfirst  = 96'h00F000_0000F0_00F000_0000F0;
 	parameter bluefirst = 96'h0000F0_00F000_0000F0_00F000;
 	
@@ -33,7 +33,7 @@ module weeWoo(rbSwap,tenHzIn,clk,reset);
 	//Next state based on tenHzIn.
 	assign nS = (tenHzIn)? !S:S;
 	
-	//rbSwap out.
+	//rbSwap out
 	assign rbSwap = S? redfirst:bluefirst;
 	
 endmodule

@@ -20,7 +20,7 @@ module shiftRegister(registerBit,loadRegister,loadValue,genDone,clk,reset);
 	
 	parameter DEFAULT = 96'h0F0F0F_0F0F0F_0F0F0F_0F0F0F;
 	
-	//State Memory.
+	//State Memory
 	always @(posedge clk)begin
 		if(reset)begin
 			S <= DEFAULT;
@@ -36,7 +36,7 @@ module shiftRegister(registerBit,loadRegister,loadValue,genDone,clk,reset);
 			2'b00:	nS = S;
 			2'b01:	nS = {S[94:0],S[95]};//rotate left everytime a bit is generated.
 			2'b10:	nS = loadValue;
-			2'b11:	nS = loadValue;//giving loadRegister precedence.
+			2'b11:	nS = loadValue;      //giving loadRegister precedence.
 		endcase
 	end
 	

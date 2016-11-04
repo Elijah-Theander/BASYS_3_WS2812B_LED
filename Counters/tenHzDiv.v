@@ -10,15 +10,15 @@ y*ln(2)=ln(10_000_000), y = 23.25= 24 bits needed.
 */
 
 module tenHzDiv(tenHz,enable,clk,reset);
-	output tenHz;//More or less a 10hz clock now.
+	output tenHz;       //Ten Hz pulse
 	
-	input  enable;//enable the counter. for our purposes it will be high always.
-	input  clk,reset;//synchronous clock and reset
+	input  enable;      //Enable the counter. For our purposes it will be high always.
+	input  clk,reset;   
 	
 	//State and next state variables
 	reg [23:0] S,nS;
 	
-	//State memory.
+	//State memory
 	always @(posedge clk)begin
 		if(reset)begin
 			S <= 24'd0;
@@ -28,7 +28,7 @@ module tenHzDiv(tenHz,enable,clk,reset);
 		end
 	end
 	
-	//Next state;
+	//Next state
 	always @(S,enable)begin
 		if(enable)begin
 			ns = (S < 24'd10_000_001)? S+1:0;

@@ -14,7 +14,7 @@ module rotationCounter(sendDone,genDone,clk,reset);
 	
 	reg [6:0] S,nS;		//State memory variable.
 	
-	//State Memory.
+	//State Memory
 	always @(posedge clk)begin
 		if(reset)begin
 			S <= 7'd0;

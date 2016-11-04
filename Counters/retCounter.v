@@ -13,11 +13,11 @@ This is based off of the 100 MHz clock on the BASYS 3 board.
 
 module retCounter(retDone,en,clk,reset);
 
-	output retDone;  //Goes high at 60 uS.
-	input  en;       //enable signal from top controller.
-	input  clk,reset;//synchronous clock and reset.
+	output retDone;   //Goes high at 60 uS.
+	input  en;        //enable signal from top controller.
+	input  clk,reset; //synchronous clock and reset.
 	
-	reg [12:0] S;    //State memory variable.
+	reg [12:0] S;     //State memory variable.
 	
 	//State Memory
 	always @(posedge clk)begin

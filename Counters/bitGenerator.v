@@ -15,16 +15,16 @@ For a Gen 0 signal it will be Low for 700 nS, high 500.
 
 module bitGenerator(theBit,genDone,genMode,doGen,clk,reset);
 	
-	output theBit;		 //output bit going to the LED strip.
-	output genDone;		 //output signal saying the generation of one bit is finished.
-	input [1:0] genMode; //input from controller saying what to generate currently.
-	input doGen;		 //input from controller saying when to generate bit.
-	input clk,reset;	 //synchronous clock and reset.
+	output theBit;		 //Output bit going to the LED strip.
+	output genDone;		 //Output signal saying the generation of one bit is finished.
+	input [1:0] genMode; //Input from controller saying what to generate currently.
+	input doGen;		 //Input from controller saying when to generate bit.
+	input clk,reset;	 //Synchronous clock and reset.
 	
 	reg [6:0] S;		 //State memory variable.
 	reg theBit;
 	
-	//parameters for genMode.
+	//Parameters for genMode.
 	parameter   genZero = 2'b10, genOne = 2'b11, genRet = 2'b00, genNone = 2'b01;
 	
 	//State Memory.
