@@ -1,0 +1,126 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01048E18 .scope module, "tb_rainbowReg" "tb_rainbowReg" 2 10;
+ .timescale -9 -9;
+v00F1F040_0 .var "clk", 0 0;
+v00F1F618_0 .net "colorCycle", 95 0, L_00F1F1F8; 1 drivers
+v00F1F148_0 .var "reset", 0 0;
+v00F1F510_0 .var "tenHzIn", 0 0;
+S_01048EA0 .scope module, "mut" "rainbowReg" 2 18, 3 12, S_01048E18;
+ .timescale 0 0;
+v0104A5A0_0 .var "S", 47 0;
+v0104A760_0 .net *"_s1", 3 0, L_00F1EF38; 1 drivers
+v0104A7B8_0 .net *"_s10", 3 0, C4<0000>; 1 drivers
+v0104E4F8_0 .net *"_s13", 3 0, L_00F1ECD0; 1 drivers
+v0104E398_0 .net *"_s14", 3 0, C4<0000>; 1 drivers
+v0104E760_0 .net *"_s17", 3 0, L_00F1EFE8; 1 drivers
+v0104E3F0_0 .net *"_s18", 3 0, C4<0000>; 1 drivers
+v0104E130_0 .net *"_s2", 3 0, C4<0000>; 1 drivers
+v0104E6B0_0 .net *"_s21", 3 0, L_00F1F0F0; 1 drivers
+v0104E810_0 .net *"_s22", 3 0, C4<0000>; 1 drivers
+v0104E7B8_0 .net *"_s25", 3 0, L_00F1EE88; 1 drivers
+v0104E550_0 .net *"_s26", 3 0, C4<0000>; 1 drivers
+v0104E868_0 .net *"_s29", 3 0, L_00F1EDD8; 1 drivers
+v0104E2E8_0 .net *"_s30", 3 0, C4<0000>; 1 drivers
+v0104E1E0_0 .net *"_s33", 3 0, L_00F1EEE0; 1 drivers
+v0104E188_0 .net *"_s34", 3 0, C4<0000>; 1 drivers
+v0104E238_0 .net *"_s37", 3 0, L_00F1F778; 1 drivers
+v0104E290_0 .net *"_s38", 3 0, C4<0000>; 1 drivers
+v0104E658_0 .net *"_s41", 3 0, L_00F1F1A0; 1 drivers
+v0104E340_0 .net *"_s42", 3 0, C4<0000>; 1 drivers
+v0104E448_0 .net *"_s45", 3 0, L_00F1F2A8; 1 drivers
+v0104E708_0 .net *"_s46", 3 0, C4<0000>; 1 drivers
+v0104E4A0_0 .net *"_s5", 3 0, L_00F1EF90; 1 drivers
+v0104E5A8_0 .net *"_s6", 3 0, C4<0000>; 1 drivers
+v0104E600_0 .net *"_s9", 3 0, L_00F1F460; 1 drivers
+v00F1ED28_0 .net "clk", 0 0, v00F1F040_0; 1 drivers
+v00F1F5C0_0 .alias "colorCycle", 95 0, v00F1F618_0;
+v00F1F568_0 .net "reset", 0 0, v00F1F148_0; 1 drivers
+v00F1F098_0 .net "tenHzIn", 0 0, v00F1F510_0; 1 drivers
+E_01049BA8 .event posedge, v00F1ED28_0;
+L_00F1EF38 .part v0104A5A0_0, 44, 4;
+L_00F1EF90 .part v0104A5A0_0, 40, 4;
+L_00F1F460 .part v0104A5A0_0, 36, 4;
+L_00F1ECD0 .part v0104A5A0_0, 32, 4;
+L_00F1EFE8 .part v0104A5A0_0, 28, 4;
+L_00F1F0F0 .part v0104A5A0_0, 24, 4;
+L_00F1EE88 .part v0104A5A0_0, 20, 4;
+L_00F1EDD8 .part v0104A5A0_0, 16, 4;
+L_00F1EEE0 .part v0104A5A0_0, 12, 4;
+L_00F1F778 .part v0104A5A0_0, 8, 4;
+L_00F1F1A0 .part v0104A5A0_0, 4, 4;
+L_00F1F2A8 .part v0104A5A0_0, 0, 4;
+LS_00F1F1F8_0_0 .concat [ 4 4 4 4], C4<0000>, L_00F1F2A8, C4<0000>, L_00F1F1A0;
+LS_00F1F1F8_0_4 .concat [ 4 4 4 4], C4<0000>, L_00F1F778, C4<0000>, L_00F1EEE0;
+LS_00F1F1F8_0_8 .concat [ 4 4 4 4], C4<0000>, L_00F1EDD8, C4<0000>, L_00F1EE88;
+LS_00F1F1F8_0_12 .concat [ 4 4 4 4], C4<0000>, L_00F1F0F0, C4<0000>, L_00F1EFE8;
+LS_00F1F1F8_0_16 .concat [ 4 4 4 4], C4<0000>, L_00F1ECD0, C4<0000>, L_00F1F460;
+LS_00F1F1F8_0_20 .concat [ 4 4 4 4], C4<0000>, L_00F1EF90, C4<0000>, L_00F1EF38;
+LS_00F1F1F8_1_0 .concat [ 16 16 16 16], LS_00F1F1F8_0_0, LS_00F1F1F8_0_4, LS_00F1F1F8_0_8, LS_00F1F1F8_0_12;
+LS_00F1F1F8_1_4 .concat [ 16 16 0 0], LS_00F1F1F8_0_16, LS_00F1F1F8_0_20;
+L_00F1F1F8 .concat [ 64 32 0 0], LS_00F1F1F8_1_0, LS_00F1F1F8_1_4;
+    .scope S_01048EA0;
+T_0 ;
+    %wait E_01049BA8;
+    %load/v 8, v00F1F568_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 48, 0;
+    %assign/v0 v0104A5A0_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v00F1F098_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %load/v 8, v0104A5A0_0, 48;
+    %mov 56, 0, 1;
+    %addi 8, 1, 49;
+    %ix/load 0, 48, 0;
+    %assign/v0 v0104A5A0_0, 0, 8;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/v 8, v0104A5A0_0, 48;
+    %ix/load 0, 48, 0;
+    %assign/v0 v0104A5A0_0, 0, 8;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_01048E18;
+T_1 ;
+    %delay 5, 0;
+    %load/v 8, v00F1F040_0, 1;
+    %inv 8, 1;
+    %set/v v00F1F040_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_01048E18;
+T_2 ;
+    %delay 40, 0;
+    %load/v 8, v00F1F510_0, 1;
+    %inv 8, 1;
+    %set/v v00F1F510_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_01048E18;
+T_3 ;
+    %vpi_call 2 32 "$dumpfile", "rainbowReg.vcd";
+    %vpi_call 2 33 "$dumpvars", 1'sb0, S_01048E18;
+    %movi 8, 2, 3;
+    %set/v v00F1F510_0, 8, 1;
+    %set/v v00F1F148_0, 9, 1;
+    %set/v v00F1F040_0, 10, 1;
+    %delay 30, 0;
+    %set/v v00F1F148_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call 2 37 "$finish";
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_rainbowreg.v";
+    "rainbowreg.v";
