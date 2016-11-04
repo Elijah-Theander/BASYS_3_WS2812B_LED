@@ -1,0 +1,78 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00FB8680 .scope module, "tb_weeWoo" "tb_weeWoo" 2 11;
+ .timescale -9 -9;
+v00FBD610_0 .var "clk", 0 0;
+v00FBD668_0 .net "rbSwap", 95 0, L_00FBD848; 1 drivers
+v00FBD6C0_0 .var "reset", 0 0;
+v00FBD718_0 .var "tenHzIn", 0 0;
+S_00FB84E8 .scope module, "mut" "weeWoo" 2 19, 3 9, S_00FB8680;
+ .timescale 0 0;
+P_00FB2EC4 .param/l "bluefirst" 3 21, C4<000000000000000011110000000000001111000000000000000000000000000011110000000000001111000000000000>;
+P_00FB2ED8 .param/l "redfirst" 3 20, C4<000000001111000000000000000000000000000011110000000000001111000000000000000000000000000011110000>;
+v00FB26D8_0 .var "S", 0 0;
+v00FB2730_0 .net *"_s1", 0 0, L_00FBD770; 1 drivers
+v00FB2788_0 .net *"_s4", 95 0, C4<000000001111000000000000000000000000000011110000000000001111000000000000000000000000000011110000>; 1 drivers
+v00FB3F58_0 .net *"_s6", 95 0, C4<000000000000000011110000000000001111000000000000000000000000000011110000000000001111000000000000>; 1 drivers
+v00FB3FB0_0 .net "clk", 0 0, v00FBD610_0; 1 drivers
+v00FB4008_0 .net "nS", 0 0, L_00FBD8A0; 1 drivers
+v00FBD508_0 .alias "rbSwap", 95 0, v00FBD668_0;
+v00FBD560_0 .net "reset", 0 0, v00FBD6C0_0; 1 drivers
+v00FBD5B8_0 .net "tenHzIn", 0 0, v00FBD718_0; 1 drivers
+E_00FB7DE8 .event posedge, v00FB3FB0_0;
+L_00FBD770 .reduce/nor v00FB26D8_0;
+L_00FBD8A0 .functor MUXZ 1, v00FB26D8_0, L_00FBD770, v00FBD718_0, C4<>;
+L_00FBD848 .functor MUXZ 96, C4<000000000000000011110000000000001111000000000000000000000000000011110000000000001111000000000000>, C4<000000001111000000000000000000000000000011110000000000001111000000000000000000000000000011110000>, v00FB26D8_0, C4<>;
+    .scope S_00FB84E8;
+T_0 ;
+    %wait E_00FB7DE8;
+    %load/v 8, v00FBD560_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00FB26D8_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v00FB4008_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00FB26D8_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_00FB8680;
+T_1 ;
+    %delay 5, 0;
+    %load/v 8, v00FBD610_0, 1;
+    %inv 8, 1;
+    %set/v v00FBD610_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_00FB8680;
+T_2 ;
+    %vpi_call 2 28 "$dumpfile", "weeWoo.vcd";
+    %vpi_call 2 29 "$dumpvars", 1'sb0, S_00FB8680;
+    %movi 8, 5, 3;
+    %set/v v00FBD6C0_0, 8, 1;
+    %set/v v00FBD610_0, 9, 1;
+    %set/v v00FBD718_0, 10, 1;
+    %delay 30, 0;
+    %set/v v00FBD6C0_0, 0, 1;
+    %delay 30, 0;
+    %set/v v00FBD718_0, 0, 1;
+    %delay 30, 0;
+    %set/v v00FBD718_0, 1, 1;
+    %delay 30, 0;
+    %set/v v00FBD718_0, 0, 1;
+    %delay 30, 0;
+    %vpi_call 2 36 "$finish";
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_weewoo.v";
+    "weewoo.v";
