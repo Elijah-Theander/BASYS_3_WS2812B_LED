@@ -13,7 +13,7 @@ module tb_rotationcounter;
 	reg genDone;
 	reg clk,reset;
 	
-	//unit under test
+	//Module under test
 	rotationCounter mut(sendDone,genDone,clk,reset);
 	
 	//100MHz clk
