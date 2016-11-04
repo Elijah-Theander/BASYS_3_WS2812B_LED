@@ -12,14 +12,14 @@ module tb_shiftRegister;
 
 	wire 		 registerBit;
 	reg  		 loadRegister;
-	reg [95:0]       loadValue;
+	reg [95:0]   loadValue;
 	reg 		 genDone;
 	reg 		 clk,reset;
 	
-	//module under test
+	//Module under test
 	shiftRegister mut(registerBit,loadRegister,loadValue,genDone,clk,reset);
 	
-	//100Mhz clk
+	//100MHz clk
 	always begin
 		#5 clk = !clk;
 	end
@@ -28,9 +28,10 @@ module tb_shiftRegister;
 		$dumpfile("shiftreg.vcd");
 		$dumpvars(0,tb_shiftRegister);
 			loadValue = 96'hAAAAAA_BBBBBB_AAAAAA_BBBBBB;
-			{loadRegister,genDone,clk,reset} =4'b1101;		#20
-			reset = 0;						#20
-			loadRegister = 0;					#1000 //this should give us all rotates.
+			{loadRegister,genDone,clk,reset} =4'b1101;    #20
+			reset = 0;                                    #20
+			loadRegister = 0;                             #1000 
+			//this should give us all rotates.
 		$finish;
 	end
 	
