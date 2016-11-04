@@ -23,6 +23,7 @@ module modeMachine(go,regVal,changeMode,modeSet,send,Green,Red,Blue,rbSwap,color
 	//State and next state variables
 	reg  [1:0]       S;
 	wire [1:0]       nS;
+	reg [95:0]       regVal;
 	
 	//State Parameters
 	parameter basemode = 2'b00, weewoo = 2'b01, cyclecolor = 2'b10;
@@ -41,10 +42,10 @@ module modeMachine(go,regVal,changeMode,modeSet,send,Green,Red,Blue,rbSwap,color
 	end
 	
 	//Next state
-	nS = modeSet;
+	assign nS = modeSet;
 	
 	//go moore output
-	go = (S == basemode)? send:1'b1;
+	assign go = (S == basemode)? send:1'b1;
 	
 	//regVal output
 	always @(S,Green,Red,Blue,rbSwap,colorCycle)begin
