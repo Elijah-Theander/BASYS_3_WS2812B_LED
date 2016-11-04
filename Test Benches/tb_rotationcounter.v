@@ -5,6 +5,8 @@ tb_rotationcounter.v
 Test bench verifying results of rotationCounter.
 */
 
+`timescale 1ns/1ns
+
 module tb_rotationcounter;
 
 	wire sendDone;
