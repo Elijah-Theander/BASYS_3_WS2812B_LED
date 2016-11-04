@@ -1,0 +1,185 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00FB75F8 .scope module, "tb_modeMachine" "tb_modeMachine" 2 11;
+ .timescale -9 -9;
+v01018F00_0 .var "Blue", 3 0;
+v01018FB0_0 .var "Green", 3 0;
+v01018DA0_0 .var "Red", 3 0;
+v01018CF0_0 .var "changeMode", 0 0;
+v01019060_0 .var "clk", 0 0;
+v01018DF8_0 .var "colorCycle", 95 0;
+v01018EA8_0 .net "go", 0 0, L_01019818; 1 drivers
+v01018D48_0 .var "modeSet", 1 0;
+v01019320_0 .var "rbSwap", 95 0;
+v010191C0_0 .net "regVal", 95 0, v01019168_0; 1 drivers
+v01018C40_0 .var "reset", 0 0;
+v01018F58_0 .var "send", 0 0;
+S_00FB7A38 .scope module, "mut" "modeMachine" 2 24, 3 11, S_00FB75F8;
+ .timescale 0 0;
+P_00FBCE94 .param/l "basemode" 3 29, C4<00>;
+P_00FBCEA8 .param/l "cyclecolor" 3 29, C4<10>;
+P_00FBCEBC .param/l "weewoo" 3 29, C4<01>;
+L_00FBDBF0 .functor BUFZ 2, v01018D48_0, C4<00>, C4<00>, C4<00>;
+v00FB4010_0 .net "Blue", 3 0, v01018F00_0; 1 drivers
+v00FF31A0_0 .net "Green", 3 0, v01018FB0_0; 1 drivers
+v00FF31F8_0 .net "Red", 3 0, v01018DA0_0; 1 drivers
+v00FF3250_0 .var "S", 1 0;
+v00FB26D8_0 .net *"_s10", 0 0, C4<1>; 1 drivers
+v00FB2730_0 .net *"_s2", 2 0, L_01019008; 1 drivers
+v00FB2788_0 .net *"_s5", 0 0, C4<0>; 1 drivers
+v00FB27E0_0 .net *"_s6", 2 0, C4<000>; 1 drivers
+v00FBAD70_0 .net *"_s8", 0 0, L_01019110; 1 drivers
+v00FBADC8_0 .net "changeMode", 0 0, v01018CF0_0; 1 drivers
+v00FBAE20_0 .net "clk", 0 0, v01019060_0; 1 drivers
+v01018E50_0 .net "colorCycle", 95 0, v01018DF8_0; 1 drivers
+v010192C8_0 .alias "go", 0 0, v01018EA8_0;
+v01019218_0 .net "modeSet", 1 0, v01018D48_0; 1 drivers
+v01019378_0 .net "nS", 1 0, L_00FBDBF0; 1 drivers
+v01018C98_0 .net "rbSwap", 95 0, v01019320_0; 1 drivers
+v01019168_0 .var "regVal", 95 0;
+v010190B8_0 .net "reset", 0 0, v01018C40_0; 1 drivers
+v01019270_0 .net "send", 0 0, v01018F58_0; 1 drivers
+E_00FE1D80/0 .event edge, v01018E50_0, v01018C98_0, v00FB4010_0, v00FF31F8_0;
+E_00FE1D80/1 .event edge, v00FF31A0_0, v00FF3250_0;
+E_00FE1D80 .event/or E_00FE1D80/0, E_00FE1D80/1;
+E_00FE1DC0 .event posedge, v00FBAE20_0;
+L_01019008 .concat [ 2 1 0 0], v00FF3250_0, C4<0>;
+L_01019110 .cmp/eq 3, L_01019008, C4<000>;
+L_01019818 .functor MUXZ 1, C4<1>, v01018F58_0, L_01019110, C4<>;
+    .scope S_00FB7A38;
+T_0 ;
+    %wait E_00FE1DC0;
+    %load/v 8, v010190B8_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 2, 0;
+    %assign/v0 v00FF3250_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v00FBADC8_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %load/v 8, v01019378_0, 2;
+    %ix/load 0, 2, 0;
+    %assign/v0 v00FF3250_0, 0, 8;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/v 8, v00FF3250_0, 2;
+    %ix/load 0, 2, 0;
+    %assign/v0 v00FF3250_0, 0, 8;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_00FB7A38;
+T_1 ;
+    %wait E_00FE1D80;
+    %load/v 8, v00FF3250_0, 2;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_1.0, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_1.1, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_1.2, 6;
+    %movi 8, 252645135, 32;
+    %movi 40, 252645135, 32;
+    %movi 72, 252645135, 32;
+    %set/v v01019168_0, 8, 96;
+    %jmp T_1.4;
+T_1.0 ;
+    %mov 8, 0, 4;
+    %load/v 12, v00FB4010_0, 4;
+    %mov 16, 0, 4;
+    %load/v 20, v00FF31F8_0, 4;
+    %mov 24, 0, 4;
+    %load/v 28, v00FF31A0_0, 4;
+    %mov 32, 0, 4;
+    %load/v 36, v00FB4010_0, 4;
+    %mov 40, 0, 4;
+    %load/v 44, v00FF31F8_0, 4;
+    %mov 48, 0, 4;
+    %load/v 52, v00FF31A0_0, 4;
+    %mov 56, 0, 4;
+    %load/v 60, v00FB4010_0, 4;
+    %mov 64, 0, 4;
+    %load/v 68, v00FF31F8_0, 4;
+    %mov 72, 0, 4;
+    %load/v 76, v00FF31A0_0, 4;
+    %mov 80, 0, 4;
+    %load/v 84, v00FB4010_0, 4;
+    %mov 88, 0, 4;
+    %load/v 92, v00FF31F8_0, 4;
+    %mov 96, 0, 4;
+    %load/v 100, v00FF31A0_0, 4;
+    %set/v v01019168_0, 8, 96;
+    %jmp T_1.4;
+T_1.1 ;
+    %load/v 8, v01018C98_0, 96;
+    %set/v v01019168_0, 8, 96;
+    %jmp T_1.4;
+T_1.2 ;
+    %load/v 8, v01018E50_0, 96;
+    %set/v v01019168_0, 8, 96;
+    %jmp T_1.4;
+T_1.4 ;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_00FB75F8;
+T_2 ;
+    %delay 5, 0;
+    %load/v 8, v01019060_0, 1;
+    %inv 8, 1;
+    %set/v v01019060_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_00FB75F8;
+T_3 ;
+    %vpi_call 2 33 "$dumpfile", "modeMachine.vcd";
+    %vpi_call 2 34 "$dumpvars", 1'sb0, S_00FB75F8;
+    %movi 8, 10, 4;
+    %set/v v01018FB0_0, 8, 4;
+    %movi 8, 11, 4;
+    %set/v v01018DA0_0, 8, 4;
+    %movi 8, 12, 4;
+    %set/v v01018F00_0, 8, 4;
+    %set/v v01018D48_0, 0, 2;
+    %movi 8, 1, 4;
+    %set/v v01018C40_0, 8, 1;
+    %set/v v01019060_0, 9, 1;
+    %set/v v01018F58_0, 10, 1;
+    %set/v v01018CF0_0, 11, 1;
+    %movi 8, 2914971053, 32;
+    %movi 40, 3987586797, 32;
+    %movi 72, 3203247550, 32;
+    %set/v v01019320_0, 8, 96;
+    %movi 104, 2915745709, 32;
+    %movi 136, 3215837887, 32;
+    %movi 168, 3401559498, 32;
+    %set/v v01018DF8_0, 104, 96;
+    %delay 30, 0;
+    %set/v v01018C40_0, 0, 1;
+    %set/v v01018F58_0, 1, 1;
+    %delay 30, 0;
+    %movi 8, 1, 2;
+    %set/v v01018D48_0, 8, 2;
+    %set/v v01018F58_0, 0, 1;
+    %delay 30, 0;
+    %set/v v01018CF0_0, 1, 1;
+    %delay 30, 0;
+    %set/v v01018CF0_0, 0, 1;
+    %delay 30, 0;
+    %movi 8, 2, 2;
+    %set/v v01018D48_0, 8, 2;
+    %set/v v01018CF0_0, 1, 1;
+    %delay 30, 0;
+    %vpi_call 2 47 "$finish";
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_modemachine.v";
+    "modemachine.v";
