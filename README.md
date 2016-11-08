@@ -1,4 +1,4 @@
-# WS2812B LED
+#BASYS 3 WS2812B LED
 This is a project from my Advanced Digital Design class that I am turning into a personal project because I enjoyed playing around with these LED strips
 
 
