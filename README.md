@@ -8,3 +8,6 @@ This is a series of finite state machines dedicated to driving a strip of four G
 The strip that I have only has 4 leds but this verilog could be changed to accommodate fewer/greater leds.
 
 I will be using the BASYS 3 FPGA prototyping board from Xilinx for this project.
+
+#Datasheet_for_WS2812B_LEDs
+https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
