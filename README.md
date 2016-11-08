@@ -1,4 +1,4 @@
-# WSB_LED
+# WS2812B LED
 This is a project from my Advanced Digital Design class that I am turning into a personal project because I enjoyed playing around with these LED strips
 
 
@@ -9,5 +9,5 @@ The strip that I have only has 4 leds but this verilog could be changed to accom
 
 I will be using the BASYS 3 FPGA prototyping board from Xilinx for this project.
 
-#Datasheet_for_WS2812B_LEDs
+#Datasheet for WS2812B LEDs
 https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
