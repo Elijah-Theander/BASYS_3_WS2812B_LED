@@ -1,0 +1,171 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0105D740 .scope module, "tb_ledControl" "tb_ledControl" 2 10;
+ .timescale -9 -9;
+v00F30BA0_0 .var "clk", 0 0;
+v00F30BF8_0 .net "doGen", 0 0, L_00F30308; 1 drivers
+v00F308E0_0 .net "doRet", 0 0, L_00F30620; 1 drivers
+v00F30CA8_0 .net "genMode", 1 0, L_00F2FDE0; 1 drivers
+v00F30990_0 .var "go", 0 0;
+v00F309E8_0 .net "loadRegister", 0 0, L_00F2FE90; 1 drivers
+v00F30830_0 .var "registerBit", 0 0;
+v00F30048_0 .var "reset", 0 0;
+v00F306D0_0 .var "retDone", 0 0;
+v00F303B8_0 .var "sendDone", 0 0;
+S_0105D498 .scope module, "mut" "ledControl" 2 23, 3 9, S_0105D740;
+ .timescale 0 0;
+P_01053604 .param/l "sendBit" 3 22, C4<1>;
+P_01053618 .param/l "sendRet" 3 22, C4<0>;
+v01057230_0 .var "S", 0 0;
+v01057180_0 .net *"_s0", 1 0, L_00F307D8; 1 drivers
+v010571D8_0 .net *"_s11", 0 0, C4<0>; 1 drivers
+v01056E10_0 .net *"_s12", 1 0, C4<00>; 1 drivers
+v01056DB8_0 .net *"_s16", 1 0, L_00F30258; 1 drivers
+v01057288_0 .net *"_s19", 0 0, C4<0>; 1 drivers
+v01056D60_0 .net *"_s20", 1 0, C4<00>; 1 drivers
+v010572E0_0 .net *"_s24", 1 0, L_00F300F8; 1 drivers
+v01056E68_0 .net *"_s27", 0 0, C4<0>; 1 drivers
+v01057020_0 .net *"_s28", 1 0, C4<00>; 1 drivers
+v01056EC0_0 .net *"_s3", 0 0, C4<0>; 1 drivers
+v01057390_0 .net *"_s30", 0 0, L_00F30780; 1 drivers
+v01057338_0 .net *"_s32", 1 0, C4<00>; 1 drivers
+v010570D0_0 .net *"_s34", 0 0, C4<1>; 1 drivers
+v01056C58_0 .net *"_s36", 1 0, L_00F2FEE8; 1 drivers
+v01056CB0_0 .net *"_s4", 1 0, C4<01>; 1 drivers
+v01056F18_0 .net *"_s8", 1 0, L_00F302B0; 1 drivers
+v01056D08_0 .net "clk", 0 0, v00F30BA0_0; 1 drivers
+v01056FC8_0 .alias "doGen", 0 0, v00F30BF8_0;
+v01057128_0 .alias "doRet", 0 0, v00F308E0_0;
+v00F30A40_0 .alias "genMode", 1 0, v00F30CA8_0;
+v00F30A98_0 .net "go", 0 0, v00F30990_0; 1 drivers
+v00F30938_0 .alias "loadRegister", 0 0, v00F309E8_0;
+v00F30D00_0 .var "nS", 0 0;
+v00F30AF0_0 .net "registerBit", 0 0, v00F30830_0; 1 drivers
+v00F30C50_0 .net "reset", 0 0, v00F30048_0; 1 drivers
+v00F30D58_0 .net "retDone", 0 0, v00F306D0_0; 1 drivers
+v00F30B48_0 .net "sendDone", 0 0, v00F303B8_0; 1 drivers
+E_010584E8 .event edge, v00F30B48_0, v00F30D58_0, v00F30A98_0, v01057230_0;
+E_010582C8 .event posedge, v01056D08_0;
+L_00F307D8 .concat [ 1 1 0 0], v01057230_0, C4<0>;
+L_00F30308 .cmp/eq 2, L_00F307D8, C4<01>;
+L_00F302B0 .concat [ 1 1 0 0], v01057230_0, C4<0>;
+L_00F30620 .cmp/eq 2, L_00F302B0, C4<00>;
+L_00F30258 .concat [ 1 1 0 0], v01057230_0, C4<0>;
+L_00F2FE90 .cmp/eq 2, L_00F30258, C4<00>;
+L_00F300F8 .concat [ 1 1 0 0], v01057230_0, C4<0>;
+L_00F30780 .cmp/eq 2, L_00F300F8, C4<00>;
+L_00F2FEE8 .concat [ 1 1 0 0], v00F30830_0, C4<1>;
+L_00F2FDE0 .functor MUXZ 2, L_00F2FEE8, C4<00>, L_00F30780, C4<>;
+    .scope S_0105D498;
+T_0 ;
+    %wait E_010582C8;
+    %load/v 8, v00F30C50_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01057230_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v00F30D00_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01057230_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0105D498;
+T_1 ;
+    %wait E_010584E8;
+    %load/v 8, v01057230_0, 1;
+    %cmpi/u 8, 0, 1;
+    %jmp/1 T_1.0, 6;
+    %cmpi/u 8, 1, 1;
+    %jmp/1 T_1.1, 6;
+    %set/v v00F30D00_0, 0, 1;
+    %jmp T_1.3;
+T_1.0 ;
+    %load/v 8, v00F30D58_0, 1;
+    %inv 8, 1;
+    %jmp/0  T_1.4, 8;
+    %mov 9, 0, 1;
+    %jmp/1  T_1.6, 8;
+T_1.4 ; End of true expr.
+    %load/v 10, v00F30A98_0, 1;
+    %jmp/0  T_1.7, 10;
+    %mov 11, 1, 1;
+    %jmp/1  T_1.9, 10;
+T_1.7 ; End of true expr.
+    %jmp/0  T_1.8, 10;
+ ; End of false expr.
+    %blend  11, 0, 1; Condition unknown.
+    %jmp  T_1.9;
+T_1.8 ;
+    %mov 11, 0, 1; Return false value
+T_1.9 ;
+    %jmp/0  T_1.5, 8;
+ ; End of false expr.
+    %blend  9, 11, 1; Condition unknown.
+    %jmp  T_1.6;
+T_1.5 ;
+    %mov 9, 11, 1; Return false value
+T_1.6 ;
+    %set/v v00F30D00_0, 9, 1;
+    %jmp T_1.3;
+T_1.1 ;
+    %load/v 8, v00F30B48_0, 1;
+    %jmp/0  T_1.10, 8;
+    %mov 9, 0, 1;
+    %jmp/1  T_1.12, 8;
+T_1.10 ; End of true expr.
+    %jmp/0  T_1.11, 8;
+ ; End of false expr.
+    %blend  9, 1, 1; Condition unknown.
+    %jmp  T_1.12;
+T_1.11 ;
+    %mov 9, 1, 1; Return false value
+T_1.12 ;
+    %set/v v00F30D00_0, 9, 1;
+    %jmp T_1.3;
+T_1.3 ;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0105D740;
+T_2 ;
+    %delay 5, 0;
+    %load/v 8, v00F30BA0_0, 1;
+    %inv 8, 1;
+    %set/v v00F30BA0_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0105D740;
+T_3 ;
+    %vpi_call 2 32 "$dumpfile", "ledControl.vcd";
+    %vpi_call 2 33 "$dumpvars", 1'sb0, S_0105D740;
+    %movi 8, 1, 6;
+    %set/v v00F30048_0, 8, 1;
+    %set/v v00F30BA0_0, 9, 1;
+    %set/v v00F30830_0, 10, 1;
+    %set/v v00F303B8_0, 11, 1;
+    %set/v v00F306D0_0, 12, 1;
+    %set/v v00F30990_0, 13, 1;
+    %delay 10, 0;
+    %set/v v00F306D0_0, 1, 1;
+    %set/v v00F30048_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00F30990_0, 1, 1;
+    %delay 20, 0;
+    %set/v v00F30830_0, 1, 1;
+    %delay 20, 0;
+    %set/v v00F303B8_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 40 "$finish";
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_ledControl.v";
+    "ledControl.v";
