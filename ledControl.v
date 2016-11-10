@@ -35,7 +35,7 @@ module ledControl(doGen,doRet,loadRegister,genMode,go,retDone,sendDone,registerB
 	//Next State
 	always @(S,go,retDone,sendDone)begin
 		case(S)
-			sendRet:    nS = ((!retDone) ? sendRet : (go ? sendBit : sendRet);
+			sendRet:    nS = ((!retDone) ? sendRet : (go ? sendBit : sendRet));
 			sendBit:    nS = sendDone ? sendRet : sendBit;
 			default:    nS = sendRet;
 		endcase
