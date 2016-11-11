@@ -43,7 +43,7 @@ module ledMachine(bitOut,btnU,btnD,sw,clk,btnC);
                                     .clk(clk), .reset(btnC));
 	
 	rainbowReg rainbow_Supply(      .colorCycle(rainbowWire),
-	                                .tenHzin(tenHzWire),
+	                                .tenHzIn(tenHzWire),
 							        .clk(clk), .reset(btnC));
 							
 	modeMachine mode_Supply(        .go(goWire),
