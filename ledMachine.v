@@ -58,7 +58,7 @@ module ledMachine(bitOut,btnU,btnD,sw,clk,btnC);
                                     .colorCycle(rainbowWire),
                                     .clk(clk), .reset(btnC));								  
 						  
-	shiftRegister register_Supply(  .registerBit(.registerBitWire),
+	shiftRegister register_Supply(  .registerBit(registerBitWire),
 	                                .loadRegister(loadRegWire),
 								    .loadValue(loadValWire),
 								    .genDone(genDoneWire),
@@ -70,7 +70,7 @@ module ledMachine(bitOut,btnU,btnD,sw,clk,btnC);
 								    .genMode(genModeWire),
 								    .go(goWire),
 								    .retDone(retDoneWire),
-								    .sendDone(sendDoneWire)),
+								    .sendDone(sendDoneWire),
 						  		    .registerBit(registerBitWire),
 								    .clk(clk), .reset(btnC));
 								  
