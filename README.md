@@ -11,3 +11,7 @@ I will be using the BASYS 3 FPGA prototyping board from Xilinx for this project.
 
 #Datasheet for WS2812B LEDs
 https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
+
+
+#Update 12/03/16
+I am putting this project on the backburner for a little while, because I am swamped with finals week work, and because I am shifting focus over to the VGA project I am workign on for the final project for my HDL class.
